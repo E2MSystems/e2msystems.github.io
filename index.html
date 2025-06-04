@@ -1,42 +1,193 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E2M Systems - A Evolução em Cuidado Pessoal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E2M Systems</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #001f3f;
+      color: white;
+    }
+    header, section, footer {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header {
+      background: linear-gradient(to bottom, #001530, #001f3f);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    nav {
+      text-align: right;
+      padding: 10px 20px;
+      background-color: #001530;
+    }
+    nav button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #00b894;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    nav button:hover {
+      background-color: #019875;
+    }
+    .logo {
+      width: 160px;
+      margin: 20px;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
+    a, button[type="submit"], .cta-button {
+      background-color: #00b894;
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1em;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    a:hover, button[type="submit"]:hover, .cta-button:hover {
+      background-color: #019875;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+    }
+    footer {
+      background-color: #001530;
+      font-size: 0.9em;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function setLanguage(lang) {
+      const texts = {
+        pt: {
+          heroTitle: "A evolução dos sistemas de cuidados pessoais está chegando...",
+          heroText: "Combinamos Inteligência Artificial, IoT e geolocalização para transformar o cuidado de idosos, crianças e pets.",
+          saibaMais: "Saiba mais",
+          sobreTitulo: "Sobre a Plataforma",
+          sobreTexto: "A E2M Systems é uma solução inovadora que integra sensores inteligentes, algoritmos preditivos e conectividade em tempo real para oferecer cuidado digital inteligente.",
+          tecnologiaTitulo: "Tecnologia",
+          tecnologiaTexto: "Utilizamos IA, dispositivos IoT e análise de dados para detectar quedas, fugas de rota, alterações fisiológicas e comportamentos de risco.",
+          contatoTitulo: "Fale Conosco",
+          nomeLabel: "Nome:",
+          emailLabel: "Email:",
+          mensagemLabel: "Mensagem:",
+          botaoEnviar: "Enviar",
+          saibaMaisContato: "Quer saber mais? Clique aqui"
+        },
+        en: {
+          heroTitle: "The evolution of personal care systems is coming...",
+          heroText: "We combine Artificial Intelligence, IoT, and geolocation to transform the care of seniors, children, and pets.",
+          saibaMais: "Learn more",
+          sobreTitulo: "About the Platform",
+          sobreTexto: "E2M Systems is an innovative solution that integrates smart sensors, predictive algorithms, and real-time connectivity to provide intelligent digital care.",
+          tecnologiaTitulo: "Technology",
+          tecnologiaTexto: "We use AI, IoT devices, and data analysis to detect falls, route deviations, physiological changes, and risky behaviors.",
+          contatoTitulo: "Contact Us",
+          nomeLabel: "Name:",
+          emailLabel: "Email:",
+          mensagemLabel: "Message:",
+          botaoEnviar: "Send",
+          saibaMaisContato: "Want to know more? Click here"
+        },
+        es: {
+          heroTitle: "La evolución de los sistemas de cuidado personal está llegando...",
+          heroText: "Combinamos Inteligencia Artificial, IoT y geolocalización para transformar el cuidado de ancianos, niños y mascotas.",
+          saibaMais: "Saber más",
+          sobreTitulo: "Sobre la Plataforma",
+          sobreTexto: "E2M Systems es una solución innovadora que integra sensores inteligentes, algoritmos predictivos y conectividad en tiempo real para brindar cuidado digital inteligente.",
+          tecnologiaTitulo: "Tecnología",
+          tecnologiaTexto: "Utilizamos IA, dispositivos IoT y análisis de datos para detectar caídas, desviaciones de ruta, cambios fisiológicos y comportamientos de riesgo.",
+          contatoTitulo: "Contáctanos",
+          nomeLabel: "Nombre:",
+          emailLabel: "Correo electrónico:",
+          mensagemLabel: "Mensaje:",
+          botaoEnviar: "Enviar",
+          saibaMaisContato: "¿Quieres saber más? Haz clic aquí"
+        }
+      };
+      for (const key in texts[lang]) {
+        const el = document.getElementById(key);
+        if (el) el.textContent = texts[lang][key];
+      }
+    }
+
+    function mostrarSecao(id) {
+      document.querySelector("header").classList.add("hidden");
+      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      if(id === 'sobre') document.getElementById('tecnologia').classList.remove("hidden");
+      if(id === 'sobre') document.getElementById('contato').classList.remove("hidden");
+    }
+
+    window.onload = () => {
+      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+    };
+  </script>
 </head>
 <body>
-  <img src="E2M_Logo_Final_HD.png" alt="Logo E2M Systems" style="max-width: 200px; margin: 20px auto; display: block;" />
-  <h1 id="heroTitle">A evolução dos sistemas de cuidados pessoais está chegando...</h1>
-  <p id="heroText">Combinamos Inteligência Artificial, IoT e geolocalização para transformar o cuidado de idosos, crianças e pets.</p>
-  <div class="teaser" id="teaser">Aguarde. Em breve: E2M Systems.</div>
-  <a href="#sobre" id="saibaMais">Saiba mais</a>
-
+  <img src="E2M_Logo_Final_HD.png" alt="E2M Logo" class="logo">
+  <nav>
+    <button onclick="setLanguage('pt')">PT</button>
+    <button onclick="setLanguage('en')">EN</button>
+    <button onclick="setLanguage('es')">ES</button>
+  </nav>
+  <header>
+    <h1 id="heroTitle">A evolução dos sistemas de cuidados pessoais está chegando...</h1>
+    <p id="heroText">Combinamos Inteligência Artificial, IoT e geolocalização para transformar o cuidado de idosos, crianças e pets.</p>
+    <a href="#" id="saibaMais" onclick="mostrarSecao('sobre')">Saiba mais</a>
+  </header>
   <section id="sobre">
-    <h2 id="sobreTitulo">O que é a E2M Systems?</h2>
-    <p id="sobreTexto">Texto sobre a E2M Systems...</p>
+    <h2 id="sobreTitulo">Sobre a Plataforma</h2>
+    <p id="sobreTexto">A E2M Systems é uma solução inovadora que integra sensores inteligentes, algoritmos preditivos e conectividade em tempo real para oferecer cuidado digital inteligente.</p>
   </section>
-
   <section id="tecnologia">
-    <h2 id="tecnologiaTitulo">Como funciona a tecnologia por trás da E2M?</h2>
-    <p id="tecnologiaTexto">Texto sobre a tecnologia...</p>
+    <h2 id="tecnologiaTitulo">Tecnologia</h2>
+    <p id="tecnologiaTexto">Utilizamos IA, dispositivos IoT e análise de dados para detectar quedas, fugas de rota, alterações fisiológicas e comportamentos de risco.</p>
+    <a href="#contato" class="cta-button" id="saibaMaisContato">Quer saber mais? Clique aqui</a>
   </section>
-
   <section id="contato">
-    <h2 id="contatoTitulo">Entre em Contato</h2>
+    <h2 id="contatoTitulo">Fale Conosco</h2>
     <form>
-      <input type="text" placeholder="Seu nome" required />
-      <input type="email" placeholder="Seu e-mail" required />
-      <textarea placeholder="Sua mensagem" rows="5" required></textarea>
-      <button type="submit">Enviar</button>
+      <label for="nome" id="nomeLabel">Nome:</label>
+      <input type="text" id="nome" name="nome">
+      <label for="email" id="emailLabel">Email:</label>
+      <input type="email" id="email" name="email">
+      <label for="mensagem" id="mensagemLabel">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem"></textarea>
+      <button type="submit" id="botaoEnviar">Enviar</button>
     </form>
   </section>
-
   <footer>
-    &copy; 2025 E2M Systems. Todos os direitos reservados.
+    <p>&copy; 2025 E2M Systems. Todos os direitos reservados.</p>
   </footer>
-
-  <script src="lang.js"></script>
 </body>
 </html>
