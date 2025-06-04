@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E2M Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background-color: #001f3f;
+      color: white;
+    }
+    header, section, footer {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header {
+      background-color: #001530;
+    }
+    nav {
+      background-color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      height: 150px;
+    }
+    .lang-buttons button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #00b894;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .lang-buttons button:hover {
+      background-color: #019875;
+    }
+    a, button {
+      background-color: #00b894;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    a:hover, button:hover {
+      background-color: #019875;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+    }
+    footer {
+      background-color: #001530;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <img src="E2M_Logo_Final_HD.png" alt="E2M Systems Logo" class="logo">
+    <div class="lang-buttons">
+      <button onclick="setLanguage('pt')">PT</button>
+      <button onclick="setLanguage('en')">EN</button>
+      <button onclick="setLanguage('es')">ES</button>
+    </div>
+  </nav>
+  <main id="mainContent"></main>
+  <footer>
+    <p>&copy; 2025 E2M Systems. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const translations = {
+      pt: {
+        heroTitle: "A evolução dos sistemas de cuidados pessoais está chegando...",
+        heroText: "Combinamos Inteligência Artificial, IoT e geolocalização para transformar o cuidado de idosos, crianças e pets.",
+        saibaMais: "Saiba mais",
+        sobreTitulo: "Sobre a Plataforma",
+        sobreTexto: "A E2M Systems é uma solução inovadora que integra sensores inteligentes, algoritmos preditivos e conectividade em tempo real para oferecer cuidado digital inteligente.",
+        tecnologiaTitulo: "Tecnologia",
+        tecnologiaTexto: "Utilizamos IA, dispositivos IoT e análise de dados para detectar quedas, fugas de rota, alterações fisiológicas e comportamentos de risco.",
+        saberMais: "Quer saber mais? Clique aqui",
+        contatoTitulo: "Fale Conosco",
+        nomeLabel: "Nome:",
+        emailLabel: "Email:",
+        mensagemLabel: "Mensagem:",
+        botaoEnviar: "Enviar"
+      },
+      en: {
+        heroTitle: "The evolution of personal care systems is coming...",
+        heroText: "We combine Artificial Intelligence, IoT and geolocation to transform the care of the elderly, children and pets.",
+        saibaMais: "Learn more",
+        sobreTitulo: "About the Platform",
+        sobreTexto: "E2M Systems is an innovative solution that integrates smart sensors, predictive algorithms and real-time connectivity to provide intelligent digital care.",
+        tecnologiaTitulo: "Technology",
+        tecnologiaTexto: "We use AI, IoT devices and data analysis to detect falls, route deviations, physiological changes and risky behaviors.",
+        saberMais: "Want to know more? Click here",
+        contatoTitulo: "Contact Us",
+        nomeLabel: "Name:",
+        emailLabel: "Email:",
+        mensagemLabel: "Message:",
+        botaoEnviar: "Send"
+      },
+      es: {
+        heroTitle: "La evolución de los sistemas de cuidado personal está llegando...",
+        heroText: "Combinamos Inteligencia Artificial, IoT y geolocalización para transformar el cuidado de ancianos, niños y mascotas.",
+        saibaMais: "Saber más",
+        sobreTitulo: "Sobre la Plataforma",
+        sobreTexto: "E2M Systems es una solución innovadora que integra sensores inteligentes, algoritmos predictivos y conectividad en tiempo real para ofrecer cuidado digital inteligente.",
+        tecnologiaTitulo: "Tecnología",
+        tecnologiaTexto: "Utilizamos IA, dispositivos IoT y análisis de datos para detectar caídas, desvíos de ruta, cambios fisiológicos y comportamientos de riesgo.",
+        saberMais: "¿Quieres saber más? Haz clic aquí",
+        contatoTitulo: "Contáctanos",
+        nomeLabel: "Nombre:",
+        emailLabel: "Correo electrónico:",
+        mensagemLabel: "Mensaje:",
+        botaoEnviar: "Enviar"
+      }
+    };
+
+    let currentLang = 'pt';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      loadHome();
+    }
+
+    function loadHome() {
+      const t = translations[currentLang];
+      document.getElementById('mainContent').innerHTML = `
+        <header>
+          <h1>${t.heroTitle}</h1>
+          <p>${t.heroText}</p>
+          <button onclick="loadAbout()">${t.saibaMais}</button>
+        </header>
+      `;
+    }
+
+    function loadAbout() {
+      const t = translations[currentLang];
+      document.getElementById('mainContent').innerHTML = `
+        <section>
+          <h2>${t.sobreTitulo}</h2>
+          <p>${t.sobreTexto}</p>
+        </section>
+        <section>
+          <h2>${t.tecnologiaTitulo}</h2>
+          <p>${t.tecnologiaTexto}</p>
+        </section>
+        <button onclick="loadContact()">${t.saberMais}</button>
+      `;
+    }
+
+    function loadContact() {
+      const t = translations[currentLang];
+      document.getElementById('mainContent').innerHTML = `
+        <section>
+          <h2>${t.contatoTitulo}</h2>
+          <form action="https://formsubmit.co/contato@e2msystems.com.br" method="POST">
+            <label for="nome">${t.nomeLabel}</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email">${t.emailLabel}</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mensagem">${t.mensagemLabel}</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+
+            <button type="submit">${t.botaoEnviar}</button>
+          </form>
+        </section>
+      `;
+    }
+
+    // Carrega em português por padrão
+    setLanguage('pt');
+  </script>
+</body>
+</html>
